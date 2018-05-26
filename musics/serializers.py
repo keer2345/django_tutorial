@@ -1,3 +1,4 @@
+from django.utils.timezone import now
 from rest_framework import serializers
 
 from musics.models import Music
@@ -12,7 +13,7 @@ class MusicSerializer(serializers.ModelSerializer):
     days_since_created = serializers.SerializerMethodField()
     singer = ToUpperCaseCharField()
 
-    class Mate:
+    class Meta:
         model = Music
         # fields = '__all__'
         fields = ('id', 'song', 'singer', 'last_modify_date',

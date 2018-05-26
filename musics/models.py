@@ -19,8 +19,8 @@ class Music(models.Model):
         default="T1"
     )
 
-    class Mate:
-        db_table = "music"
+    class Meta:
+        db_table = "musics_music"
 
     def display_type_name(self):
         return self.get_type_display()
