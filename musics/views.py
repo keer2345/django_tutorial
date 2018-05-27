@@ -1,6 +1,7 @@
 # from django.shortcuts import render
 from rest_framework import status, viewsets
 from rest_framework.decorators import detail_route, list_route
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from musics.models import Music, fun_raw_sql_query, fun_sql_cursor_update
@@ -16,8 +17,10 @@ from musics.serializers import MusicSerializer
 class MusicViewSet(viewsets.ModelViewSet):
     queryset = Music.objects.all()
     serializer_class = MusicSerializer
+    permission_classes = (IsAuthenticated,)
 
     # /api/music/raw_sql_query/
+
     @list_route(methods=['get'])
     def raw_sql_query(self, request):
         song = request.query_params.get('song', None)
